@@ -55,7 +55,7 @@ process assembleBALDR{
  set pair_id, file(reads) from read_pair_BALDR_ch
 
  output:
- file "*.fasta" into assembled_ch
+ file "*.igblast_tabular.quant.sorted.*" into baldr_assembled_ch
 
  errorStrategy 'ignore'
 
