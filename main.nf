@@ -47,7 +47,7 @@ Channel
                                                    
 process assembleBALDR{
  
- conda 'trimmomatic=0.32 trinity=2.3.2 bowtie2=2.3.0 STAR=2.5.2b samtools=1.3.1 IgBLAST=1.5.0 seqtk=1.2' 
+ conda 'trimmomatic=0.32 trinity=2.3.2 bowtie2=2.3.0 STAR=2.5.2b IgBLAST=1.5.0 seqtk=1.2' 
 
  publishDir "$params.outdir/BALDR", mode: 'copy', overwrite: false
 
