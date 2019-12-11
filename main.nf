@@ -61,10 +61,12 @@ process assembleBALDR{
 
  """
  TRINITY=`which Trinity`
- TRIM=`which trimmomatic`
+
  IG=`which igblastn`
  STARPATH=`which STAR`
  ADAPT=`which trimmomatic | sed 's/bin\\/trimmomatic/share\\/trimmomatic-*\\/adapters\\/NexteraPE-PE.fa/g'`
+ TRIM=`which trimmomatic | sed 's/bin\\/trimmomatic/share\\/trimmomatic-*\\/adapters\\/NexteraPE-PE.fa/g' | sed 's/\\/adapters\\/NexteraPE-PE.fa/trimmomatic.jar/g`
+ 
  
  $baseDir/BALDR --paired ${reads[0]},${reads[1]} \
  --trinity \$TRINITY \
