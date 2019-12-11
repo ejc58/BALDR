@@ -66,7 +66,7 @@ process assembleBALDR{
  STARPATH=`which STAR`
  ADAPT=`which trimmomatic | sed 's/bin\\/trimmomatic/share\\/trimmomatic-*\\/adapters\\/NexteraPE-PE.fa/g'`
  
- ./$baseDir/BALDR --paired ${reads[0]},${reads[1]} \
+ .$baseDir/BALDR --paired ${reads[0]},${reads[1]} \
  --trinity \$TRINITY \
  --adapter \$ADAPT \
  --trimmoatic \$TRIM \
