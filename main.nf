@@ -69,7 +69,7 @@ process assembleBALDR{
  $baseDir/BALDR --paired ${reads[0]},${reads[1]} \
  --trinity \$TRINITY \
  --adapter \$ADAPT \
- --trimmoatic \$TRIM \
+ --trimmomatic \$TRIM \
  --igblastn \$IG \
  --db $baseDir/resources/IgBLAST_DB/ \
  --STAR \$STARPATH \
