@@ -3,10 +3,10 @@
 /*
  *
  * Execute this script locally (eg on head node for debugging):
- * nextflow run ejc58/nf_bcr -profile standard
+ * nextflow run ejc58/BALDR -profile standard
  *
  * Send to cluster:
- * nextflow run ejc58/nf_bcr -profile cluster
+ * nextflow run ejc58/BALDR -profile cluster
  *
  * 
  *
@@ -47,7 +47,7 @@ Channel
                                                    
 process assembleBALDR{
  
- conda 'trimmomatic=0.32.3 trinity=2.3.2 bowtie2=2.3.0 STAR=2.5.2b samtools=1.3.1-6 IgBLAST v1.6.1' 
+ conda 'trimmomatic=0.32.3 trinity=2.3.2 bowtie2=2.3.0 STAR=2.5.2b samtools=1.3.1-6 IgBLAST=1.5.0-2 seqtk=1.2-1' 
 
  publishDir "$params.outdir/BALDR", mode: 'copy', overwrite: false
 
@@ -60,6 +60,22 @@ process assembleBALDR{
  errorStrategy 'ignore'
 
  """
+ TRINITY=`which trinity`
+ TRIM=`which trimmomatic`
+ IG=`which igblastn`
+ STAR=`which star`
+ ADAPT=`sed 's/trimmomatic-0.32.3.jar/adapters\\/NexteraPE-PE.fa/g' TRIM`
  
+ ./BALDR --paired ${reads[0]},${reads[1]} \
+ --trinity /$TRINITY \
+ --adapter /$ADAPT \
+ --trimmoatic /$TRIM \
+ --igblastn /$IG \
+ --db /$baseDir/resources/IgBLAST_DB/ \
+ --STAR /$STAR \
+ --STAR_index /bi/scratch/Genomes/Human/GRCh37_Gencode_for_STAR/ \
+ --BALDR /$baseDir \
+ --memory 64G \
+ --threads 8 \
  """
 }
