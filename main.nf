@@ -55,7 +55,7 @@ process assembleBALDR{
  set pair_id, file(reads) from read_pair_BALDR_ch
 
  output:
- file "*.igblast_tabular.quant.sorted.*" into baldr_assembled_ch
+ file "IgBLAST_quant_sorted/*.igblast_tabular.quant.sorted.*" into baldr_assembled_ch
 
  errorStrategy 'ignore'
 
