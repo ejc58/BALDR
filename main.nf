@@ -75,7 +75,7 @@ process assembleBALDR{
  --igblastn \$IG \
  --db $baseDir/resources/IgBLAST_DB/ \
  --STAR \$STARPATH \
- --STAR_index /bi/scratch/Genomes/Human/GRCh37_Gencode_for_STAR/ \
+ --STAR_index /bi/scratch/Genomes/Human/GRCh37_Gencode_for_STAR/STAR_2.5.1b_genome_50bp \
  --BALDR $baseDir \
  --memory 64G \
  --threads 8 \
