@@ -67,14 +67,14 @@ process assembleBALDR{
  ADAPT=`sed 's/trimmomatic-0.32.3.jar/adapters\\/NexteraPE-PE.fa/g' TRIM`
  
  ./BALDR --paired ${reads[0]},${reads[1]} \
- --trinity /$TRINITY \
- --adapter /$ADAPT \
- --trimmoatic /$TRIM \
- --igblastn /$IG \
+ --trinity \$TRINITY \
+ --adapter \$ADAPT \
+ --trimmoatic \$TRIM \
+ --igblastn \$IG \
  --db /$baseDir/resources/IgBLAST_DB/ \
- --STAR /$STAR \
+ --STAR \$STAR \
  --STAR_index /bi/scratch/Genomes/Human/GRCh37_Gencode_for_STAR/ \
- --BALDR /$baseDir \
+ --BALDR \$baseDir \
  --memory 64G \
  --threads 8 \
  """
