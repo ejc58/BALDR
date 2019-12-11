@@ -60,11 +60,11 @@ process assembleBALDR{
  errorStrategy 'ignore'
 
  """
- TRINITY=`which trinity`
+ TRINITY=`which Trinity`
  TRIM=`which trimmomatic`
  IG=`which igblastn`
- STAR=`which star`
- ADAPT=`sed 's/trimmomatic-*.jar/adapters\\/NexteraPE-PE.fa/g' TRIM`
+ STARPATH=`which STAR`
+ ADAPT=`which trimmomatic | sed 's/bin\\/trimmomatic/share\\/trimmomatic-*\\/adapters\\/NexteraPE-PE.fa/g'`
  
  ./BALDR --paired ${reads[0]},${reads[1]} \
  --trinity \$TRINITY \
@@ -72,7 +72,7 @@ process assembleBALDR{
  --trimmoatic \$TRIM \
  --igblastn \$IG \
  --db /$baseDir/resources/IgBLAST_DB/ \
- --STAR \$STAR \
+ --STAR \$STARPATH \
  --STAR_index /bi/scratch/Genomes/Human/GRCh37_Gencode_for_STAR/ \
  --BALDR \$baseDir \
  --memory 64G \
