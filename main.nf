@@ -71,10 +71,10 @@ process assembleBALDR{
  --adapter \$ADAPT \
  --trimmoatic \$TRIM \
  --igblastn \$IG \
- --db /$baseDir/resources/IgBLAST_DB/ \
+ --db $baseDir/resources/IgBLAST_DB/ \
  --STAR \$STARPATH \
  --STAR_index /bi/scratch/Genomes/Human/GRCh37_Gencode_for_STAR/ \
- --BALDR \$baseDir \
+ --BALDR $baseDir \
  --memory 64G \
  --threads 8 \
  """
