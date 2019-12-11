@@ -47,7 +47,7 @@ Channel
                                                    
 process assembleBALDR{
  
- conda 'trimmomatic=0.32.3 trinity=2.3.2 bowtie2=2.3.0 STAR=2.5.2b samtools=1.3.1-6 IgBLAST=1.5.0-2 seqtk=1.2-1' 
+ conda 'trimmomatic=0.32 trinity=2.3.2 bowtie2=2.3.0 STAR=2.5.2b samtools=1.3.1 IgBLAST=1.5.0 seqtk=1.2' 
 
  publishDir "$params.outdir/BALDR", mode: 'copy', overwrite: false
 
@@ -64,7 +64,7 @@ process assembleBALDR{
  TRIM=`which trimmomatic`
  IG=`which igblastn`
  STAR=`which star`
- ADAPT=`sed 's/trimmomatic-0.32.3.jar/adapters\\/NexteraPE-PE.fa/g' TRIM`
+ ADAPT=`sed 's/trimmomatic-*.jar/adapters\\/NexteraPE-PE.fa/g' TRIM`
  
  ./BALDR --paired ${reads[0]},${reads[1]} \
  --trinity \$TRINITY \
