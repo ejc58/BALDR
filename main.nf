@@ -79,5 +79,7 @@ process assembleBALDR{
  --BALDR $baseDir \
  --memory 64G \
  --threads 8 \
+ 
+ ln -s IG-mapped_Unmapped/IgBLAST_quant_sorted*/* $PWD
  """
 }
