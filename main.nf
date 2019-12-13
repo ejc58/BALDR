@@ -49,14 +49,14 @@ process assembleBALDR{
  
  conda 'trimmomatic=0.32 trinity=2.3.2 bowtie2=2.3.0 STAR=2.5.2b IgBLAST=1.7.0 seqtk=1.2' 
 
- publishDir "$params.outdir/BALDR", mode: 'copy', overwrite: false, pattern: "IG-mapped_Unmapped/IgBLAST_quant_sorted/*"
- publishDir "$params.outdir/BALDR", mode: 'copy', overwrite: false, pattern: "IG-mapped_Unmapped/IgBLAST_quant_sorted_filtered/*"
+ publishDir "$params.outdir/BALDR", mode: 'copy', overwrite: false, pattern: "IG-mapped_Unmapped/IgBLAST_quant_sorted"
+ publishDir "$params.outdir/BALDR", mode: 'copy', overwrite: false, pattern: "IG-mapped_Unmapped/IgBLAST_quant_sorted_filtered"
  
  input:
  set pair_id, file(reads) from read_pair_BALDR_ch
 
  output:
- file "*" into baldr_assembled_ch
+ file "*"
 
  errorStrategy 'ignore'
 
