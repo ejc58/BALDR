@@ -82,6 +82,7 @@ process assembleBALDR{
  
  # Soft link the output files to the base directory of the working directory
  # These files are then 'seen' by publishDir
- ln -s IG-mapped_Unmapped/IgBLAST_quant_sorted*/*
+ FILE=`ls IG-mapped_Unmapped/IgBLAST_quant_sorted*/*`
+ for f in $FILE;do ln -s $f; done
  """
 }
