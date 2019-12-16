@@ -80,6 +80,8 @@ process assembleBALDR{
  --memory 64G \
  --threads 8 \
  
- ln -s IG-mapped_Unmapped/IgBLAST_quant_sorted*/* $PWD
+ # Soft link the output files to the base directory of the working directory
+ # These files are then 'seen' by publishDir
+ ln -s IG-mapped_Unmapped/IgBLAST_quant_sorted*/* $workflow.workDir
  """
 }
