@@ -49,14 +49,13 @@ process assembleBALDR{
  
  conda 'trimmomatic=0.32 trinity=2.3.2 bowtie2=2.3.0 STAR=2.5.2b IgBLAST=1.7.0 seqtk=1.2' 
 
- publishDir "$params.outdir/BALDR", mode: 'copy', overwrite: true, pattern = "*.IGH"
-  publishDir "$params.outdir/BALDR", mode: 'copy', overwrite: true, pattern = "*.IGKL"
+ publishDir "$params.outdir/BALDR", mode: 'copy', overwrite: true
  
  input:
  set pair_id, file(reads) from read_pair_BALDR_ch
 
  output:
- file "*"
+ file "**/*tabular.quant.sorted*"
 
  errorStrategy 'ignore'
 
@@ -83,7 +82,7 @@ process assembleBALDR{
  
  # Soft link the output files to the base directory of the working directory
  # These files are then 'seen' by publishDir
- FILE=`ls IG-mapped_Unmapped/IgBLAST_quant_sorted*/*`
- for f in \$FILE;do ln -s \$f; done
+ #FILE=`ls IG-mapped_Unmapped/IgBLAST_quant_sorted*/*`
+ #for f in \$FILE;do ln -s \$f; done
  """
 }
