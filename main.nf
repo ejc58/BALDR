@@ -21,14 +21,16 @@ params.reads = "/bi/sequencing/Sample_49*_ALFNA_*/Lane*/Unaligned/*_545R_d0*{R1,
 params.outdir = "nf_bcr_output"
 params.species = "human"
 params.chains = "IGH,IGK,IGL"
+params.starpath = "/bi/home/carre/STAR_GRCh38/"
 
 log.info """\
          Nextflow B C R   P I P E L I N E
          ================================
-         species: ${params.species}
-         annot : ${params.annot}
-         reads : ${params.reads}
-         outdir: ${params.outdir}
+         species  : ${params.species}
+         annot    : ${params.annot}
+         reads    : ${params.reads}
+         outdir   : ${params.outdir}
+         STARpath : ${params.starpath}
          """
          .stripIndent()
 
@@ -63,7 +65,7 @@ process assembleBALDR{
  TRINITY=`which Trinity`
 
  IG=`which igblastn`
- STARPATH=`which STAR`
+ STARPROGPATH=`which STAR`
  ADAPT=`which trimmomatic | sed 's/bin\\/trimmomatic/share\\/trimmomatic-*\\/adapters\\/NexteraPE-PE.fa/g'`
  TRIM=`which trimmomatic | sed 's/bin\\/trimmomatic/share\\/trimmomatic-*\\/adapters\\/NexteraPE-PE.fa/g' | sed 's/adapters\\/NexteraPE-PE.fa/trimmomatic.jar/g'`
  
@@ -74,11 +76,11 @@ process assembleBALDR{
  --trimmomatic \$TRIM \
  --igblastn \$IG \
  --db $baseDir/resources/IgBLAST_DB/human \
- --STAR \$STARPATH \
- --STAR_index /bi/scratch/Genomes/Human/GRCh37_Gencode_for_STAR/STAR_2.5.1b_genome_50bp \
+ --STAR \$STARPROGPATH \
+ --STAR_index $starpath \
  --BALDR $baseDir \
- --memory 64G \
- --threads 8 \
+ --memory ${task.memory.toGiga()}G \
+ --threads ${task.cpus} \
  
  # Soft link the output files to the base directory of the working directory
  # These files are then 'seen' by publishDir
