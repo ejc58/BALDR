@@ -21,7 +21,7 @@ params.reads = "/bi/sequencing/Sample_49*_ALFNA_*/Lane*/Unaligned/*_545R_d0*{R1,
 params.outdir = "nf_bcr_output"
 params.species = "human"
 params.chains = "IGH,IGK,IGL"
-params.starpath = "/bi/home/carre/STAR_GRCh38/"
+params.starpath = "/bi/home/carre/STAR_GRCh38/STAR_GRCh38_index/"
 
 log.info """\
          Nextflow B C R   P I P E L I N E
@@ -77,7 +77,7 @@ process assembleBALDR{
  --igblastn \$IG \
  --db $baseDir/resources/IgBLAST_DB/human \
  --STAR \$STARPROGPATH \
- --STAR_index $starpath \
+ --STAR_index $params.starpath \
  --BALDR $baseDir \
  --memory ${task.memory.toGiga()}G \
  --threads ${task.cpus} \
