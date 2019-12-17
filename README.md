@@ -12,22 +12,47 @@ BALDR is based on the *de novo* assembly of RNA-Seq reads. It allows reconstruct
 
 ## Installation (manual)
 
-### Pre-requisites
-1. [Trimmomatic 0.32](http://www.usadellab.org/cms/?page=trimmomatic)
-2. [Trinity v2.3.2](https://github.com/trinityrnaseq/trinityrnaseq/wiki) (Newer versions are not compatible)
-3. [bowtie2 2.3.0](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
-4. [STAR v2.5.2b](https://github.com/alexdobin/STAR)
-5. [samtools v1.3.1](http://www.htslib.org/download/)
-6. [IgBLAST v1.6.1](https://www.ncbi.nlm.nih.gov/igblast/faq.html#standalone) (Newer versions are not compatible)
-7. [seqtk 1.2](https://github.com/lh3/seqtk)
-8. Perl 5
+~~### Pre-requisites~~
+1. ~~[Trimmomatic 0.32](http://www.usadellab.org/cms/?page=trimmomatic)~~
+2. ~~[Trinity v2.3.2](https://github.com/trinityrnaseq/trinityrnaseq/wiki) (Newer versions are not compatible)~~
+3. ~~[bowtie2 2.3.0](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)~~
+4. ~~[STAR v2.5.2b](https://github.com/alexdobin/STAR)~~
+5. ~~[samtools v1.3.1](http://www.htslib.org/download/)~~
+6. ~~[IgBLAST v1.6.1](https://www.ncbi.nlm.nih.gov/igblast/faq.html#standalone) (Newer versions are not compatible)~~
+7. ~~[seqtk 1.2](https://github.com/lh3/seqtk)~~
+8. ~~Perl 5~~
 
-Install all the pre-requisites
-Clone or download the BALDR package. 
+~~Install all the pre-requisites
+Clone or download the BALDR package.~~
 ```
 cd BALDR
 chmod +x BALDR
 ```
+## Installation with nextflow & conda
+
+_For linux / OSX only. Windows should use either the docker image or the classical installation._
+
+_For paired end data_
+
+1. install nextflow + conda
+2. configure your cluster environment in nextflow
+3. add bioconda channel to conda
+4. Create a STAR index as described below (and necessary for this way or via docker, or classical installation).
+5. Run BALDR as follows:
+
+```
+nextflow run ejc58/BALDR -profile cluster -outdir nf_bcr_output -starpath path/to/star_index -reads /path/to/reads/incl/filenames/{R1, R2}.fastq.gz`
+```
+Nextflow will download this git repository and then create a conda environment containing the required tools.
+A BALDR task for each cell is then dispatched to compute nodes.
+
+Nextflow will return any files deposited in these directories to the outdir:
+    - **IgBLAST_quant_sorted**         
+    - **IgBLAST_quant_sorted_filtered**
+    
+Note that all BALDR outputs are stored in a folder `/work` wherever the nextflow run command was called. This is useful if you wish to retrieve intermediate steps. The conda environment is also stored here.
+
+
 ## Docker image
 
 You can pull the image from DockerHub
