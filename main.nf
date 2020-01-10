@@ -75,7 +75,6 @@ process assembleBALDR{
  --adapter \$ADAPT \
  --trimmomatic \$TRIM \
  --igblastn \$IG \
- --db $baseDir/resources/IgBLAST_DB/human \
  --STAR \$STARPROGPATH \
  --STAR_index $params.starpath \
  --BALDR $baseDir \
