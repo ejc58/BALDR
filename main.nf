@@ -71,6 +71,7 @@ process assembleBALDR{
  
  
  $baseDir/BALDR --paired ${reads[0]},${reads[1]} \
+ --organism $params.species \
  --trinity \$TRINITY \
  --adapter \$ADAPT \
  --trimmomatic \$TRIM \
